@@ -736,7 +736,9 @@ h2 { font-size: clamp(26px, 3.2vw, 38px); }
 .topbar .cta-group { flex-wrap: nowrap; }
 .topbar .cta-group .btn { white-space: nowrap; padding: 10px 14px; font-size: 14px; }
 .topbar .cta-group .btn.ghost { display: none; }
-.logo-mark { background: #fff; }
+.logo-mark { background: #0d1a29; border: 1px solid var(--line); overflow: hidden; }
+.logo-mark img { width: auto; height: 44px; }
+.footer-brand img { width: auto; height: 52px; border-radius: 8px; }
 .brand .eyebrow { color: var(--gold); letter-spacing: 0.18em; font-size: 11px; }
 .nav a:hover { background: rgba(227, 201, 139, 0.14); color: var(--gold); }
 .btn.primary { background: linear-gradient(135deg, #f1dfae, #c9a55c); color: #0b1533; box-shadow: 0 14px 30px rgba(201, 165, 92, 0.3); }
