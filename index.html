@@ -6,7 +6,7 @@
   <title>よっチャンネル | Python × AI 実践ラボ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@600;800&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,10 +23,12 @@
       </div>
       <nav class="nav">
         <a href="#about">コンセプト</a>
+        <a href="#cast">キャスト</a>
         <a href="#latest">最新動画</a>
         <a href="#topics">配信テーマ</a>
         <a href="#all-videos">動画一覧</a>
-        <a href="#contact">仕事の依頼・お問い合わせ</a>
+        <a href="#present">プレゼント</a>
+        <a href="#contact">お問い合わせ</a>
       </nav>
       <div class="cta-group">
         <a class="btn ghost" href="https://www.youtube.com/channel/UCyjFn_RJ7tM82CT_i3eoOZg" target="_blank" rel="noopener">チャンネルを開く</a>
@@ -35,50 +37,133 @@
     </header>
 
     <main>
-      <section class="hero" id="hero">
+      <section class="hero hero-cast" id="hero">
         <div class="hero-copy">
-          <p class="eyebrow">AIとPythonをもっと身近に</p>
-          <h1>コード解説と最新AI情報を、<span class="highlight">実演で届ける</span>。</h1>
+          <p class="eyebrow">Python × AI 実践ラボ</p>
+          <h1>コードも、AIも。<br><span class="highlight">キャストと一緒に</span>、<br>手を動かして学ぶ。</h1>
           <p class="lede">
-            コーディングの解説・実演と、最新のAI情報をコンパクトに。ChatGPT/Transformerの仕組み、Copilot活用、
-            Windowsショートカット100選、MCPなど、日常と仕事で役立つヒントをYouTubeで配信しています。
+            Python 入門から pandas・機械学習・生成 AI の実践まで。よっちゃんと 12 人のキャストが、
+            つまずきやすい所をいっしょに確かめながら、動画でわかりやすく届けます。
           </p>
           <div class="cta-group">
-            <a class="btn primary" href="https://www.youtube.com/channel/UCyjFn_RJ7tM82CT_i3eoOZg" target="_blank" rel="noopener">YouTubeで視聴する</a>
-            <a class="btn secondary" href="#latest">最新動画を見る</a>
+            <a class="btn primary" href="https://www.youtube.com/channel/UCyjFn_RJ7tM82CT_i3eoOZg?sub_confirmation=1" target="_blank" rel="noopener">チャンネル登録する</a>
+            <a class="btn secondary" href="#present">🎁 2027年カレンダーを受け取る</a>
           </div>
           <div class="chips">
-            <span class="chip">Transformer/LLM</span>
-            <span class="chip">AI最新ニュース</span>
-            <span class="chip">Copilot活用</span>
-            <span class="chip">ショートカット100</span>
+            <span class="chip">Python 入門</span>
+            <span class="chip">pandas / Matplotlib</span>
+            <span class="chip">機械学習</span>
+            <span class="chip">生成 AI 活用</span>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="badge">
-            <div class="badge-icon">▶</div>
-            <div>
-              <p class="badge-label">最新動画</p>
-              <p class="badge-value">ChatGPT × Transformer解説</p>
+        <div class="hero-strip" aria-label="キャスト">
+          <figure><img src="assets/cast/hero-07-rin.jpg" alt="凛" loading="eager"><figcaption>凛</figcaption></figure><figure><img src="assets/cast/hero-01-misaki.jpg" alt="美咲" loading="eager"><figcaption>美咲</figcaption></figure><figure><img src="assets/cast/hero-11-koharu.jpg" alt="心春" loading="eager"><figcaption>心春</figcaption></figure><figure><img src="assets/cast/hero-12-yukino.jpg" alt="雪乃" loading="eager"><figcaption>雪乃</figcaption></figure><figure><img src="assets/cast/hero-05-nanami.jpg" alt="七海" loading="eager"><figcaption>七海</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="section" id="cast">
+        <div class="section-header">
+          <p class="eyebrow">Staff &amp; Cast</p>
+          <h2>動画を一緒に届ける 12 人</h2>
+          <p class="lede">初心者の「わからない」を代わりに聞いてくれる人、実務の使いどころを教えてくれる人。個性の違うキャストが、毎回の動画を支えています。</p>
+        </div>
+        <div class="cast-grid">
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/01-misaki.jpg" alt="美咲" loading="lazy"><span class="cast-month">1月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">MISAKI</p>
+              <h3>美咲</h3>
+              <p class="cast-job">大学で情報学を学びながら、和菓子店でアルバイト</p>
             </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat">
-              <p class="stat-label">テーマ</p>
-              <p class="stat-value">Python / AI</p>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/02-kaede.jpg" alt="楓" loading="lazy"><span class="cast-month">2月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">KAEDE</p>
+              <h3>楓</h3>
+              <p class="cast-job">Web 制作会社のディレクター</p>
             </div>
-            <div class="stat">
-              <p class="stat-label">更新</p>
-              <p class="stat-value">週2-3本</p>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/03-hina.jpg" alt="陽菜" loading="lazy"><span class="cast-month">3月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">HINA</p>
+              <h3>陽菜</h3>
+              <p class="cast-job">専門学校でデザインを勉強中</p>
             </div>
-            <div class="stat">
-              <p class="stat-label">形式</p>
-              <p class="stat-value">ライブ + ショート</p>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/04-aoi.jpg" alt="葵" loading="lazy"><span class="cast-month">4月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">AOI</p>
+              <h3>葵</h3>
+              <p class="cast-job">航空会社勤務</p>
             </div>
-          </div>
-          <div class="hero-note">
-            <p>実演で「分かる」を増やし、最新AIをすぐ使える形に。</p>
-          </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/05-nanami.jpg" alt="七海" loading="lazy"><span class="cast-month">5月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">NANAMI</p>
+              <h3>七海</h3>
+              <p class="cast-job">古着店スタッフ</p>
+            </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/06-sara.jpg" alt="紗良" loading="lazy"><span class="cast-month">6月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">SARA</p>
+              <h3>紗良</h3>
+              <p class="cast-job">図書館司書</p>
+            </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/07-rin.jpg" alt="凛" loading="lazy"><span class="cast-month">7月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">RIN</p>
+              <h3>凛</h3>
+              <p class="cast-job">ソフトウェアエンジニア</p>
+            </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/08-kotone.jpg" alt="琴音" loading="lazy"><span class="cast-month">8月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">KOTONE</p>
+              <h3>琴音</h3>
+              <p class="cast-job">フリーの作曲家</p>
+            </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/09-yui.jpg" alt="結衣" loading="lazy"><span class="cast-month">9月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">YUI</p>
+              <h3>結衣</h3>
+              <p class="cast-job">カフェのバリスタ</p>
+            </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/10-riko.jpg" alt="莉子" loading="lazy"><span class="cast-month">10月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">RIKO</p>
+              <h3>莉子</h3>
+              <p class="cast-job">大学の教育学部生</p>
+            </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/11-koharu.jpg" alt="心春" loading="lazy"><span class="cast-month">11月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">KOHARU</p>
+              <h3>心春</h3>
+              <p class="cast-job">保育士</p>
+            </div>
+          </article>
+          <article class="cast-card">
+            <div class="cast-photo"><img src="assets/cast/12-yukino.jpg" alt="雪乃" loading="lazy"><span class="cast-month">12月</span></div>
+            <div class="cast-body">
+              <p class="cast-kana">YUKINO</p>
+              <h3>雪乃</h3>
+              <p class="cast-job">パティシエ見習い</p>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -145,6 +230,31 @@
             <p>学習フローの基礎と実装の流れをコンパクトに。</p>
             <a class="btn ghost" href="https://www.youtube.com/watch?v=Z3SsHQbcIZY" target="_blank" rel="noopener">動画を見る</a>
           </article>
+        </div>
+      </section>
+
+      <section class="section present" id="present">
+        <div class="present-visual">
+          <img class="cal cal-back" src="assets/calendar-december.jpg" alt="カレンダー 12月のページ" loading="lazy">
+          <img class="cal cal-mid" src="assets/calendar-july.jpg" alt="カレンダー 7月のページ" loading="lazy">
+          <img class="cal cal-front" src="assets/calendar-cover.jpg" alt="カレンダー 2027 表紙" loading="lazy">
+        </div>
+        <div class="present-copy">
+          <p class="eyebrow">Present</p>
+          <h2>2027年カレンダーをプレゼント</h2>
+          <p class="lede">
+            キャスト 12 人が毎月登場する、めくって使う 2027 年カレンダー（PDF・A4／A3 対応）。
+            チャンネル登録と動画への「いいね」で応援してくださった方に、その場でお渡ししています。
+          </p>
+          <ol class="present-steps">
+            <li><b>チャンネル登録</b>をする</li>
+            <li>対象の動画に<b>「いいね」</b>を付ける</li>
+            <li>プレゼントページで <b>Google ログイン</b>して確認 → ダウンロード</li>
+          </ol>
+          <div class="cta-group">
+            <a class="btn primary" href="present/">プレゼントを受け取る</a>
+            <a class="btn ghost" href="https://www.youtube.com/channel/UCyjFn_RJ7tM82CT_i3eoOZg?sub_confirmation=1" target="_blank" rel="noopener">チャンネル登録する</a>
+          </div>
         </div>
       </section>
 
@@ -388,9 +498,10 @@
         <a href="#latest">最新動画</a>
         <a href="#topics">配信テーマ</a>
         <a href="#all-videos">動画一覧</a>
+        <a href="#present">プレゼント</a>
         <a href="#contact">仕事の依頼・お問い合わせ</a>
       </div>
-      <p class="muted small">© 2025 よっチャンネル</p>
+      <p class="muted small">© 2026 よっチャンネル</p>
     </footer>
   </div>
 </body>

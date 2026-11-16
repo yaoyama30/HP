@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythonよっちゃんねる カレンダー 2027 プレゼント</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+  :root { --navy:#0f1b3d; --gold:#e3c98b; --paper:#f6f2ea; --ok:#2e9e6b; --ng:#d9534f; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px;
+         background:radial-gradient(130% 80% at 50% 20%,#22386f 0%,#101c44 48%,#080f2a 100%); color:#fff;
+         font-family:'Yu Gothic','Meiryo',sans-serif; line-height:1.8; }
+  main { width:100%; max-width:560px; border:1px solid rgba(227,201,139,.6); padding:32px 28px; background:rgba(8,14,34,.35); }
+  h1 { font-family:'Yu Mincho',serif; font-size:1.5rem; margin:0 0 4px; letter-spacing:.06em; }
+  .sub { color:var(--gold); letter-spacing:.3em; font-size:.8rem; margin-bottom:20px; }
+  ol { padding-left:1.3em; margin:0 0 20px; }
+  a { color:var(--gold); }
+  button { width:100%; padding:14px; font-size:1rem; font-weight:700; border:0; border-radius:4px; cursor:pointer;
+           background:var(--gold); color:var(--navy); }
+  button:disabled { opacity:.5; cursor:default; }
+  #result { margin-top:20px; display:none; }
+  .row { display:flex; gap:10px; align-items:center; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.15); }
+  .mark { width:1.6em; height:1.6em; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; }
+  .yes { background:var(--ok); } .no { background:var(--ng); }
+  #download { display:none; margin-top:18px; text-align:center; padding:14px; background:var(--paper); border-radius:4px; }
+  #download a { color:var(--navy); font-weight:700; font-size:1.05rem; }
+  #message { margin-top:14px; min-height:1.8em; }
+  small { display:block; margin-top:24px; opacity:.75; font-size:.78rem; line-height:1.7; }
+  details { margin-top:16px; font-size:.78rem; line-height:1.7; opacity:.85; }
+  details summary { cursor:pointer; color:var(--gold); font-weight:700; }
+  details ol { margin:10px 0 0; }
+  details li { margin-bottom:6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>カレンダー 2027 プレゼント</h1>
+  <div class="sub">PYTHON × AI 実践ラボ</div>
+  <ol>
+    <li><a id="channelLink" target="_blank" rel="noopener">チャンネル登録</a>をする</li>
+    <li><a id="videoLink" target="_blank" rel="noopener">この動画</a>に「いいね」（高評価 👍）を付ける</li>
+    <li>下のボタンから Google でログインして確認する</li>
+  </ol>
+  <button id="check" disabled>Google でログインして確認する</button>
+  <div id="message" role="status"></div>
+  <div id="result">
+    <div class="row"><span id="mSub" class="mark"></span><span>チャンネル登録</span></div>
+    <div class="row"><span id="mLike" class="mark"></span><span>動画への「いいね」</span></div>
+    <div id="download"><a id="pdf" target="_blank" rel="noopener">カレンダー（PDF）をダウンロード</a></div>
+  </div>
+  <small>
+    ログインで許可いただくのは、YouTube の情報の「読み取り」だけです。チャンネル登録と「いいね」の確認にのみ使い、
+    お名前・メールアドレスなどの情報は保存しません。確認に使う許可は約1時間で自動的に無効になります。<br>
+    このプレゼントは Pythonよっちゃんねる が行うもので、YouTube は主催・協賛していません。参加は無料です。
+  </small>
+  <details>
+    <summary>応募規約・免責事項</summary>
+    <ol>
+      <li>本プレゼントは Pythonよっちゃんねる（以下「主催者」）が無償で行うものです。応募・受け取りに費用はかかりません（通信料は応募者の負担です）。</li>
+      <li>プレゼントはカレンダーの PDF データです。印刷物の送付は行いません。印刷にかかる費用は応募者の負担です。</li>
+      <li>通信環境、端末、ブラウザ、Google や YouTube の仕様変更・障害、アクセスの集中などにより、確認やダウンロードができない場合があります。プレゼントを受け取れなかった場合でも、主催者は再配布・補償などの責任を負いません。</li>
+      <li>主催者は、本プレゼントの内容の正確性（日付・祝日の表記を含みます）、特定の目的への適合性、不具合がないことを保証しません。祝日は変更されることがあります。</li>
+      <li>本プレゼントへの応募、PDF の利用または利用できなかったことにより生じた損害について、主催者は、法令で認められる範囲で一切の責任を負いません。</li>
+      <li>主催者は、予告なく本プレゼントの内容・条件を変更し、または中止・終了することがあります。</li>
+      <li>PDF は個人で楽しむ目的に限りご利用ください。再配布、販売、改変、商用利用、インターネット上への転載はできません。カレンダーの著作権は主催者にあります。</li>
+      <li>不正な方法による応募と主催者が判断した場合、受け取りをお断りすることがあります。</li>
+      <li>本規約は日本法に従います。応募された時点で、本規約に同意いただいたものとします。</li>
+    </ol>
+  </details>
+</main>
+<script>
+// ---- settings: fill these in (see README.md) --------------------------------------------------
+const CONFIG = {
+  CLIENT_ID: "1075583074736-jrdanh97ih2qeqb6lcpnfj7etdf9il4q.apps.googleusercontent.com",   // OAuth client ID (Web application)
+  VERIFY_URL: "https://script.google.com/macros/s/AKfycbz5k7u6E0OhSf7rAfIBkELFjd47kLjvD2NV0Kq2Jg4XoaJ1IgS9fBbtKZLLRTlxNCZc/exec",   // Apps Script web app
+  CHANNEL_URL: "https://www.youtube.com/channel/UCyjFn_RJ7tM82CT_i3eoOZg?sub_confirmation=1",
+  VIDEO_URL: "https://www.youtube.com/watch?v=BFsfBbIoQp4",   // the video to like (must match VIDEO_ID in the Apps Script properties)
+};
+// -----------------------------------------------------------------------------------------------
+const SCOPE = "https://www.googleapis.com/auth/youtube.readonly";
+const $ = (id) => document.getElementById(id);
+const MESSAGES = {
+  invalid_token: "ログインの有効期限が切れました。もう一度お試しください。",
+  wrong_client: "ログイン情報がこのページのものではありません。ページを開き直してください。",
+  missing_scope: "YouTube の読み取りが許可されませんでした。ログイン画面でチェックを入れてお試しください。",
+  youtube_error: "YouTube に確認できませんでした。YouTube チャンネルをお持ちのアカウントでお試しください。",
+  not_configured: "準備中です。しばらくしてからお試しください。",
+};
+
+function say(text) { $("message").textContent = text; }
+
+function show(result) {
+  for (const [id, yes] of [["mSub", result.subscribed], ["mLike", result.liked]]) {
+    $(id).textContent = yes ? "✓" : "×";
+    $(id).className = "mark " + (yes ? "yes" : "no");
+  }
+  $("result").style.display = "block";
+  $("download").style.display = result.eligible ? "block" : "none";
+  if (result.eligible) { $("pdf").href = result.url; say("確認できました。ありがとうございます！"); }
+  else say("まだ条件を満たしていません。上の手順のあと、もう一度ボタンを押してください。");
+}
+
+async function verify(token) {
+  say("確認しています…");
+  // text/plain keeps this a "simple" request, which an Apps Script web app can answer across origins
+  const res = await fetch(CONFIG.VERIFY_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+                                              body: JSON.stringify({ token }) });
+  const result = await res.json();
+  if (result.ok) show(result); else say(MESSAGES[result.error] || "確認に失敗しました。時間をおいてお試しください。");
+}
+
+function start() {
+  $("channelLink").href = CONFIG.CHANNEL_URL;
+  $("videoLink").href = CONFIG.VIDEO_URL || "#";
+  if (!CONFIG.CLIENT_ID || !CONFIG.VERIFY_URL || !CONFIG.VIDEO_URL) { say(MESSAGES.not_configured); return; }
+  const client = google.accounts.oauth2.initTokenClient({
+    client_id: CONFIG.CLIENT_ID, scope: SCOPE,
+    callback: (response) => {
+      $("check").disabled = false;
+      if (response.error || !response.access_token) { say("ログインが完了しませんでした。"); return; }
+      verify(response.access_token).catch(() => say("通信に失敗しました。時間をおいてお試しください。"));
+    },
+    error_callback: () => { $("check").disabled = false; say("ログインが完了しませんでした。"); },
+  });
+  $("check").disabled = false;
+  $("check").addEventListener("click", () => { $("check").disabled = true; say(""); client.requestAccessToken(); });
+}
+
+window.addEventListener("load", () => {
+  const wait = setInterval(() => { if (window.google && google.accounts) { clearInterval(wait); start(); } }, 100);
+});
+</script>
+</body>
+</html>
