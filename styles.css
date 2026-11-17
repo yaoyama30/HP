@@ -806,4 +806,11 @@ h2 { font-size: clamp(26px, 3.2vw, 38px); }
   .hero-strip { gap: 6px; }
   .nav { flex-wrap: wrap; gap: 2px; justify-content: flex-start; }
 }
+/* headings and lead texts: lines of even length, broken between phrases, never a short last line */
+h1, h2, h3, .section-header .lede, .hero-copy .lede { text-wrap: balance; word-break: auto-phrase; }
+p, li { text-wrap: pretty; }                                /* body text: no one-character last line */
+.hero-copy .highlight { padding: 0; }                      /* no gap before the comma that follows */
+#topics .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }   /* six cards: two full rows */
+@media (max-width: 900px) { #topics .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { #topics .video-grid { grid-template-columns: 1fr; } }
 /* ==== end theme-2027 ==== */
