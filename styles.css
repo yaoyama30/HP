@@ -843,4 +843,7 @@ p, li { text-wrap: pretty; }                                /* body text: no one
 .video-embed.is-waiting .video-play { display: none; }
 .video-embed.is-waiting .video-poster { cursor: default; }
 #mv-when { display: inline-block; margin-left: .6em; color: #e3c98b; font-weight: 700; }
+/* footer: the visit counter above the copyright line */
+.footer-meta { display: grid; gap: 2px; }
+.visit-counter b { color: #e3c98b; font-variant-numeric: tabular-nums; }
 /* ==== end theme-2027 ==== */

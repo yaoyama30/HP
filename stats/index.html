@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>アクセス統計 | Pythonよっちゃんねる</title>
+<style>
+  :root { --navy:#0f1b3d; --gold:#e3c98b; --line:rgba(227,201,139,.35); }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:32px 16px 56px; color:#f4f1ea; line-height:1.8;
+         background:#070d22 radial-gradient(1100px 600px at 70% 0,#22386f 0%,transparent 60%) no-repeat;
+         font-family:'Yu Gothic','Meiryo',sans-serif; }
+  main { max-width:860px; margin:0 auto; border:1px solid rgba(227,201,139,.5); padding:32px 28px; background:rgba(8,14,34,.45); }
+  nav { max-width:860px; margin:0 auto 14px; font-size:.9rem; }
+  a { color:var(--gold); }
+  h1 { font-family:'Yu Mincho',serif; font-size:1.6rem; margin:0 0 4px; letter-spacing:.05em; }
+  h2 { font-family:'Yu Mincho',serif; font-size:1.1rem; color:var(--gold); margin:30px 0 10px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+  .sub { color:var(--gold); letter-spacing:.25em; font-size:.8rem; margin-bottom:18px; }
+  .cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .card { border:1px solid var(--line); border-radius:12px; padding:14px 12px; background:rgba(15,27,61,.55); }
+  .card .label { font-size:.8rem; opacity:.85; }
+  .card .value { font-size:1.9rem; font-weight:700; color:var(--gold); font-variant-numeric:tabular-nums; line-height:1.3; }
+  .card .note { font-size:.75rem; opacity:.75; }
+  .chart { display:flex; align-items:flex-end; gap:3px; height:180px; padding:8px 0 0; border-bottom:1px solid var(--line); }
+  .chart .bar { flex:1 1 0; min-width:0; background:linear-gradient(180deg,#f1dfae,#b9974d); border-radius:3px 3px 0 0; position:relative; }
+  .chart .bar.zero { background:rgba(227,201,139,.18); }
+  .chart .bar.today { outline:1px solid #fff; }
+  .axis { display:flex; justify-content:space-between; font-size:.75rem; opacity:.75; margin-top:4px; }
+  .scale { font-size:.75rem; opacity:.75; }
+  table { width:100%; border-collapse:collapse; font-size:.92rem; font-variant-numeric:tabular-nums; }
+  th, td { padding:6px 8px; border-bottom:1px solid rgba(227,201,139,.18); text-align:right; }
+  th:first-child, td:first-child { text-align:left; }
+  th { color:var(--gold); font-weight:700; }
+  .status { margin:10px 0; font-size:.9rem; }
+  .status.error { color:#ffb4a8; }
+  ul { padding-left:1.3em; margin:6px 0; }
+  code { background:rgba(255,255,255,.1); padding:0 5px; border-radius:4px; }
+  @media (max-width:640px) { .cards { grid-template-columns:repeat(2,minmax(0,1fr)); } main { padding:24px 16px; } }
+</style>
+</head>
+<body>
+<nav><a href="../">← ホームページ</a></nav>
+<main>
+  <h1>アクセス統計</h1>
+  <div class="sub">PYTHONよっちゃんねる ホームページ</div>
+  <p class="status" id="status">数字を読み込んでいます。</p>
+
+  <div class="cards" id="cards" hidden>
+    <div class="card"><div class="label">今日の訪問者数</div><div class="value" data-key="todayVisitors">0</div><div class="note" id="today-date"></div></div>
+    <div class="card"><div class="label">訪問者数（累計）</div><div class="value" data-key="visitors">0</div><div class="note" id="since"></div></div>
+    <div class="card"><div class="label">表示回数（累計）</div><div class="value" data-key="views">0</div><div class="note">ページを開いた回数</div></div>
+    <div class="card"><div class="label">MV の再生（累計）</div><div class="value" data-key="mv">0</div><div class="note">ホームページ内での再生</div></div>
+  </div>
+
+  <h2>日ごとの訪問者数（直近 30 日）</h2>
+  <p class="scale" id="scale"></p>
+  <div class="chart" id="chart" role="img" aria-label="日ごとの訪問者数の棒グラフ"></div>
+  <div class="axis"><span id="axis-from"></span><span id="axis-to"></span></div>
+
+  <h2>日ごとの数字</h2>
+  <table>
+    <thead><tr><th>日付</th><th>訪問者数</th><th>表示回数</th><th>MV の再生</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <h2>数字の見方</h2>
+  <ul>
+    <li><b>訪問者数</b>：同じブラウザーは 1 日に 1 回だけ数えます。翌日にまた開くと、もう 1 回数えます。</li>
+    <li><b>表示回数</b>：ホームページ（トップページ）を開いた回数です。同じ人が何度開いても、そのたびに数えます。</li>
+    <li><b>MV の再生</b>：ホームページの中で MV の表紙を押して再生を始めた回数です。YouTube で直接見た回数は含みません。</li>
+    <li>日付は日本時間です。検索エンジンなどの自動巡回は数えません。</li>
+    <li>自分の端末を数えたくないときは、<code>https://yaoyama30.github.io/HP/?nocount=1</code> を一度開いてください（そのブラウザーからは数えなくなります。<code>?nocount=0</code> で元に戻ります）。</li>
+  </ul>
+</main>
+<script>
+(function () {
+  var URL_ = 'https://script.google.com/macros/s/AKfycbxZy79ad_a3TcjoIU8FoBAuFGRsp3cvoUmdIRWRuUQ7SOImZ4iRo19SxSOoP_smyKo/exec';
+  var WEEK = '日月火水木金土';
+  function text(id, value) { document.getElementById(id).textContent = value; }
+  function number(value) { return Number(value || 0).toLocaleString('ja-JP'); }
+  function label(date) {            // '2026-11-22' -> '11/22(日)'
+    var parts = date.split('-').map(Number);
+    var day = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2])).getUTCDay();
+    return parts[1] + '/' + parts[2] + '(' + WEEK[day] + ')';
+  }
+  function before(date, days) {     // the date `days` days earlier
+    var parts = date.split('-').map(Number);
+    return new Date(Date.UTC(parts[0], parts[1] - 1, parts[2] - days)).toISOString().slice(0, 10);
+  }
+  function render(data) {
+    var byDate = {};
+    data.days.forEach(function (row) { byDate[row.date] = row; });
+    var today = byDate[data.today] || { visitors: 0, views: 0, mv: 0 };
+    var values = { todayVisitors: today.visitors, visitors: data.total.visitors, views: data.total.views, mv: data.total.mv };
+    document.querySelectorAll('.value').forEach(function (node) { node.textContent = number(values[node.getAttribute('data-key')]); });
+    text('today-date', label(data.today));
+    var first = data.days.length ? data.days[data.days.length - 1].date : data.today;
+    text('since', label(first) + ' から');
+    document.getElementById('cards').hidden = false;
+
+    var chart = document.getElementById('chart'), most = 1, span = [];
+    for (var back = 29; back >= 0; back--) {
+      var date = before(data.today, back), row = byDate[date] || { visitors: 0 };
+      span.push({ date: date, visitors: row.visitors });
+      most = Math.max(most, row.visitors);
+    }
+    chart.textContent = '';
+    span.forEach(function (row) {
+      var bar = document.createElement('div');
+      bar.className = 'bar' + (row.visitors ? '' : ' zero') + (row.date === data.today ? ' today' : '');
+      bar.style.height = (row.visitors ? Math.max(4, Math.round(100 * row.visitors / most)) : 2) + '%';
+      bar.title = label(row.date) + '：' + number(row.visitors) + ' 人';
+      chart.appendChild(bar);
+    });
+    text('scale', 'いちばん多い日：' + number(most === 1 && !span.some(function (r) { return r.visitors; }) ? 0 : most) + ' 人');
+    text('axis-from', label(span[0].date));
+    text('axis-to', label(data.today) + '（今日）');
+
+    var rows = document.getElementById('rows');
+    rows.textContent = '';
+    var from = first < before(data.today, 89) ? before(data.today, 89) : first;
+    for (var date2 = data.today; date2 >= from; date2 = before(date2, 1)) {
+      var item = byDate[date2] || { visitors: 0, views: 0, mv: 0 };
+      var line = document.createElement('tr');
+      [label(date2), number(item.visitors), number(item.views), number(item.mv)].forEach(function (value) {
+        var cell = document.createElement('td');
+        cell.textContent = value;
+        line.appendChild(cell);
+      });
+      rows.appendChild(line);
+    }
+    var status = document.getElementById('status');
+    status.textContent = '最新の数字です（' + new Date().toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' }) + ' に読み込み）。';
+  }
+  fetch(URL_ + '?stats=1' + (/[?&]test=1/.test(location.search) ? '&test=1' : ''))
+    .then(function (res) { return res.json(); })
+    .then(function (data) { if (!data.ok) throw new Error(data.error || 'error'); render(data); })
+    .catch(function () {
+      var status = document.getElementById('status');
+      status.className = 'status error';
+      status.textContent = '数字を読み込めませんでした。時間をおいて、もう一度開いてください。';
+    });
+})();
+</script>
+</body>
+</html>

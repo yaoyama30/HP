@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@600;800&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261122b">
+  <link rel="stylesheet" href="styles.css?v=20261122c">
 </head>
 <body>
   <div class="page">
@@ -619,7 +619,10 @@
         <a href="present/">カレンダープレゼント</a>
         <a href="privacy/">プライバシーポリシー</a>
       </div>
-      <p class="muted small">© 2026 Pythonよっちゃんねる</p>
+      <div class="footer-meta">
+        <p class="muted small visit-counter" id="visit-counter" hidden>訪問者数 <b data-total>0</b> 人（今日 <b data-today>0</b> 人）</p>
+        <p class="muted small">© 2026 Pythonよっちゃんねる</p>
+      </div>
     </footer>
   </div>
   <script>
@@ -651,9 +654,48 @@
       frame.allowFullscreen = true;
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
       box.replaceChildren(frame);
+      if (window.hpCount) window.hpCount('mv');
     });
     show();
     if (!released()) setTimeout(show, Math.min(from - Date.now() + 1000, 2147483647));
+  })();
+  </script>
+  <script>
+  (function () {
+    // Visit counter (owner 2026-11-22). The page tells the channel's own counting script that it was opened,
+    // whether this is the browser's first view of the day, and when the MV is started. Nothing that
+    // identifies a visitor is sent. ?nocount=1 stops the counting for this browser (?nocount=0 starts it again).
+    var URL_ = 'https://script.google.com/macros/s/AKfycbxZy79ad_a3TcjoIU8FoBAuFGRsp3cvoUmdIRWRuUQ7SOImZ4iRo19SxSOoP_smyKo/exec';
+    var out = document.getElementById('visit-counter');
+    var store = (function () { try { localStorage.setItem('hp-probe', '1'); localStorage.removeItem('hp-probe'); return localStorage; } catch (e) { return null; } })();
+    var query = new URLSearchParams(location.search);
+    if (store && query.has('nocount')) {
+      if (query.get('nocount') === '0') store.removeItem('hp-nocount'); else store.setItem('hp-nocount', '1');
+    }
+    // Only the published site counts: a preview on another host (localhost) reads the numbers and adds nothing.
+    var off = location.hostname !== 'yaoyama30.github.io' || !!(store && store.getItem('hp-nocount')) || navigator.webdriver === true
+      || /bot|crawl|spider|headless|lighthouse|pagespeed|preview/i.test(navigator.userAgent);
+    function show(result) {
+      if (!result || !result.ok || !out) return;
+      out.querySelector('[data-total]').textContent = Number(result.visitors).toLocaleString('ja-JP');
+      out.querySelector('[data-today]').textContent = Number(result.today).toLocaleString('ja-JP');
+      out.hidden = false;
+    }
+    function send(body) {
+      return fetch(URL_, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                           body: JSON.stringify(body), keepalive: true }).then(function (res) { return res.json(); });
+    }
+    var today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);    // the date in Japan
+    if (off) {
+      fetch(URL_).then(function (res) { return res.json(); }).then(show).catch(function () {});
+    } else {
+      var first = !store || store.getItem('hp-day') !== today;
+      send({ event: 'view', first: first }).then(function (result) {
+        if (result.ok && store) store.setItem('hp-day', today);
+        show(result);
+      }).catch(function () {});
+    }
+    window.hpCount = function (event) { if (!off) send({ event: event }).catch(function () {}); };
   })();
   </script>
 </body>
