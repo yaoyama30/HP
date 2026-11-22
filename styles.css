@@ -834,4 +834,13 @@ p, li { text-wrap: pretty; }                                /* body text: no one
 .video-play::after { content: ""; position: absolute; left: 50%; top: 50%; margin: -15px 0 0 -9px; border-style: solid;
   border-width: 15px 0 15px 26px; border-color: transparent transparent transparent #e3c98b; }
 .video-poster:hover .video-play, .video-poster:focus-visible .video-play { transform: scale(1.08); background: rgba(6, 11, 29, .86); }
+/* MV: before its release the poster shows when it opens instead of the play mark */
+.video-soon { position: absolute; left: 16px; top: 16px; padding: 8px 18px; border-radius: 999px;
+  background: rgba(6, 11, 29, .86); border: 1px solid rgba(227, 201, 139, .9); color: #e3c98b; font-weight: 700;
+  letter-spacing: .08em; white-space: nowrap; box-shadow: 0 10px 30px rgba(0, 0, 0, .45); }
+#mv [hidden] { display: none !important; }      /* .btn sets display, which would show a hidden link */
+@media (max-width: 600px) { .video-soon { left: 10px; top: 10px; padding: 4px 11px; font-size: 11px; letter-spacing: .04em; } }
+.video-embed.is-waiting .video-play { display: none; }
+.video-embed.is-waiting .video-poster { cursor: default; }
+#mv-when { display: inline-block; margin-left: .6em; color: #e3c98b; font-weight: 700; }
 /* ==== end theme-2027 ==== */

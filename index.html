@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@600;800&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261122">
+  <link rel="stylesheet" href="styles.css?v=20261122b">
 </head>
 <body>
   <div class="page">
@@ -22,9 +22,10 @@
         </div>
       </div>
       <nav class="nav">
+        <a href="#mv">MV</a>
         <a href="#about">コンセプト</a>
         <a href="#cast">キャスト</a>
-        <a href="#latest">最新動画</a>
+        <a href="#latest">最新レッスン</a>
         <a href="#topics">配信テーマ</a>
         <a href="#all-videos">動画一覧</a>
         <a href="#present">プレゼント</a>
@@ -58,6 +59,35 @@
         </div>
         <div class="hero-strip" aria-label="キャスト">
           <figure><img src="assets/cast/hero-07-rin.jpg" alt="凛" loading="eager"><figcaption>凛</figcaption></figure><figure><img src="assets/cast/hero-01-misaki.jpg" alt="美咲" loading="eager"><figcaption>美咲</figcaption></figure><figure><img src="assets/cast/hero-11-koharu.jpg" alt="心春" loading="eager"><figcaption>心春</figcaption></figure><figure><img src="assets/cast/hero-12-yukino.jpg" alt="雪乃" loading="eager"><figcaption>雪乃</figcaption></figure><figure><img src="assets/cast/hero-05-nanami.jpg" alt="七海" loading="eager"><figcaption>七海</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="section" id="mv">
+        <div class="section-header">
+          <p class="eyebrow">Music Video</p>
+          <h2>Syntax Sugar「次のページへ」</h2>
+          <p class="lede">Pythonよっちゃんねるのスタッフ＆キャスト 12 人が歌う、はじまりの一曲。<span id="mv-when">2026年11月22日（日）20:00 公開</span></p>
+        </div>
+        <div class="video-wrap">
+          <!-- The poster becomes the player when it is pressed (the video then plays inside this page).
+               The MV is private on YouTube until data-from; before that the poster only says when it opens. -->
+          <div class="video-embed" id="mv-player" data-video="oi8me5lh4u8" data-from="2026-11-22T20:00:00+09:00">
+            <a class="video-poster" href="https://www.youtube.com/watch?v=oi8me5lh4u8" target="_blank" rel="noopener" aria-label="MV「次のページへ」を再生する">
+              <img src="assets/mv-poster.jpg" alt="Syntax Sugar「次のページへ」MV" loading="lazy">
+              <span class="video-play" aria-hidden="true"></span>
+              <span class="video-soon" hidden>11月22日（日）20:00 公開</span>
+            </a>
+          </div>
+          <div class="video-cta">
+            <div>
+              <p class="eyebrow">Syntax Sugar</p>
+              <p class="lede">歌：美咲・楓・陽菜・葵・七海・紗良・凛・琴音・結衣・莉子・心春・雪乃</p>
+            </div>
+            <div class="cta-group">
+              <a class="btn primary" href="https://www.youtube.com/channel/UCyjFn_RJ7tM82CT_i3eoOZg?sub_confirmation=1" target="_blank" rel="noopener">チャンネル登録する</a>
+              <a class="btn ghost" id="mv-open" href="https://www.youtube.com/watch?v=oi8me5lh4u8" target="_blank" rel="noopener">YouTubeで開く</a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -171,7 +201,7 @@
       <section class="section" id="latest">
         <div class="section-header">
           <p class="eyebrow">Latest</p>
-          <h2>最新動画</h2>
+          <h2>最新のレッスン</h2>
           <p class="lede">numpy入門（2026年11月20日 公開・31 分）</p>
         </div>
         <div class="video-wrap">
@@ -330,7 +360,7 @@
         <div class="section-header">
           <p class="eyebrow">All Videos</p>
           <h2>公開中の動画一覧</h2>
-          <p class="lede">公開中の動画 19 本を、新しい順に並べています（ショート動画を除く）。</p>
+          <p class="lede">公開中の動画 19 本を、新しい順に並べています（MV とショート動画を除く）。</p>
         </div>
         <div class="thumb-grid">
           <a class="thumb-card" href="https://www.youtube.com/watch?v=QzrIljSJFY4" target="_blank" rel="noopener">
@@ -580,8 +610,9 @@
         </div>
       </div>
       <div class="footer-links">
+        <a href="#mv">MV「次のページへ」</a>
         <a href="#about">コンセプト</a>
-        <a href="#latest">最新動画</a>
+        <a href="#latest">最新レッスン</a>
         <a href="#topics">配信テーマ</a>
         <a href="#all-videos">動画一覧</a>
         <a href="#contact">仕事の依頼・お問い合わせ</a>
@@ -591,5 +622,39 @@
       <p class="muted small">© 2026 Pythonよっちゃんねる</p>
     </footer>
   </div>
+  <script>
+  (function () {
+    // MV: the poster becomes the player when it is pressed. Before the release time the video is private on
+    // YouTube, so the poster only says when it opens and the link to YouTube stays hidden.
+    var box = document.getElementById('mv-player');
+    if (!box) return;
+    var poster = box.querySelector('.video-poster');
+    var soon = box.querySelector('.video-soon');
+    var when = document.getElementById('mv-when');
+    var open = document.getElementById('mv-open');
+    var from = Date.parse(box.getAttribute('data-from'));
+    function released() { return !(Date.now() < from); }
+    function show() {
+      var out = released();
+      box.classList.toggle('is-waiting', !out);
+      soon.hidden = out;
+      open.hidden = !out;
+      when.textContent = out ? '公開中' : '2026年11月22日（日）20:00 公開';
+    }
+    poster.addEventListener('click', function (event) {
+      event.preventDefault();
+      if (!released()) return;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube.com/embed/' + box.getAttribute('data-video') + '?autoplay=1&rel=0&playsinline=1';
+      frame.title = 'Syntax Sugar「次のページへ」MV';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      box.replaceChildren(frame);
+    });
+    show();
+    if (!released()) setTimeout(show, Math.min(from - Date.now() + 1000, 2147483647));
+  })();
+  </script>
 </body>
 </html>
