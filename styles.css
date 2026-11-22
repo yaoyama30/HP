@@ -808,9 +808,13 @@ h2 { font-size: clamp(26px, 3.2vw, 38px); }
 }
 /* headings and lead texts: lines of even length, broken between phrases, never a short last line */
 h1, h2, h3, .section-header .lede, .hero-copy .lede { text-wrap: balance; word-break: auto-phrase; }
-#all-videos .thumb-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }   /* 17 videos + the channel card: six full rows */
-@media (max-width: 900px) { #all-videos .thumb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { #all-videos .thumb-grid { grid-template-columns: 1fr; } }
+/* Full rows whatever the number of videos: three (two, one) cards to a row, and the channel card at the end takes
+   what is left of its row. Until 2026-11-22 the grid was tuned to "17 videos + the channel card". */
+#all-videos .thumb-grid { display: flex; flex-wrap: wrap; }
+#all-videos .thumb-card { flex: 0 0 calc((100% - 28px) / 3 - .01px); min-width: 0; }
+#all-videos .thumb-more { flex-grow: 1; }
+@media (max-width: 900px) { #all-videos .thumb-card { flex-basis: calc((100% - 14px) / 2 - .01px); } }
+@media (max-width: 600px) { #all-videos .thumb-card { flex-basis: 100%; } }
 .thumb-meta .thumb-date { margin-top: 6px; font-size: 12px; letter-spacing: .06em; color: #a9b1c6; }   /* the theme sits here, not on the picture */
 .thumb-meta .thumb-date b { color: #e3c98b; font-weight: 700; }
 .thumb-more { align-content: center; text-align: center; border: 1px solid rgba(227,201,139,.45); }
@@ -818,7 +822,16 @@ h1, h2, h3, .section-header .lede, .hero-copy .lede { text-wrap: balance; word-b
 .thumb-more .btn { pointer-events: none; }
 p, li { text-wrap: pretty; }                                /* body text: no one-character last line */
 .hero-copy .highlight { padding: 0; }                      /* no gap before the comma that follows */
-#topics .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }   /* six cards: two full rows */
+#topics .video-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }   /* eight cards: two full rows (four rows of two below 900px) */
 @media (max-width: 900px) { #topics .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { #topics .video-grid { grid-template-columns: 1fr; } }
+/* 最新動画: a poster that opens YouTube (an embedded player cannot play a video that forbids playback on other sites) */
+.video-embed .video-poster { position: absolute; inset: 0; display: block; }
+.video-embed .video-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-play { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%;
+  background: rgba(6, 11, 29, .72); border: 2px solid rgba(227, 201, 139, .9); box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+  transition: transform .15s ease, background .2s ease; }
+.video-play::after { content: ""; position: absolute; left: 50%; top: 50%; margin: -15px 0 0 -9px; border-style: solid;
+  border-width: 15px 0 15px 26px; border-color: transparent transparent transparent #e3c98b; }
+.video-poster:hover .video-play, .video-poster:focus-visible .video-play { transform: scale(1.08); background: rgba(6, 11, 29, .86); }
 /* ==== end theme-2027 ==== */

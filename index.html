@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@600;800&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261122">
 </head>
 <body>
   <div class="page">
@@ -172,18 +172,23 @@
         <div class="section-header">
           <p class="eyebrow">Latest</p>
           <h2>最新動画</h2>
-          <p class="lede">matplotlib入門（2026年11月17日 公開・31 分）</p>
+          <p class="lede">numpy入門（2026年11月20日 公開・31 分）</p>
         </div>
         <div class="video-wrap">
           <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/lEhHxw9Zie8" title="matplotlib入門" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+            <!-- 2026-11-22: a poster that opens YouTube, not an embedded player. The videos published from the
+                 studio app do not allow playback on other sites, and the player here said 「動画を再生できません」. -->
+            <a class="video-poster" href="https://www.youtube.com/watch?v=QzrIljSJFY4" target="_blank" rel="noopener" aria-label="numpy入門 を YouTube で再生する">
+              <img src="https://i.ytimg.com/vi/QzrIljSJFY4/maxresdefault.jpg" alt="numpy入門" loading="lazy">
+              <span class="video-play" aria-hidden="true"></span>
+            </a>
           </div>
           <div class="video-cta">
             <div>
               <p class="eyebrow">Pickup</p>
-              <p class="lede">グラフの描き方を、基本から 30 分で解説。</p>
+              <p class="lede">配列の作り方から集計・形の変え方・行列積まで、NumPy の基本を 30 分で。</p>
             </div>
-            <a class="btn primary" href="https://www.youtube.com/watch?v=lEhHxw9Zie8" target="_blank" rel="noopener">YouTubeで開く</a>
+            <a class="btn primary" href="https://www.youtube.com/watch?v=QzrIljSJFY4" target="_blank" rel="noopener">YouTubeで開く</a>
           </div>
         </div>
       </section>
@@ -202,6 +207,12 @@
             <a class="btn ghost" href="https://www.youtube.com/watch?v=BDTcpMm9RPc" target="_blank" rel="noopener">動画を見る</a>
           </article>
           <article class="video-card">
+            <div class="pill-outline">NumPy・1 本</div>
+            <h3>numpy入門</h3>
+            <p>配列の作り方から集計・形の変え方・行列積まで、NumPy の基本を 30 分で。</p>
+            <a class="btn ghost" href="https://www.youtube.com/watch?v=QzrIljSJFY4" target="_blank" rel="noopener">動画を見る</a>
+          </article>
+          <article class="video-card">
             <div class="pill-outline">Pandas・3 本</div>
             <h3>pandas入門</h3>
             <p>データの読み込みから集計まで、pandas の始め方を 60 分で。</p>
@@ -214,10 +225,16 @@
             <a class="btn ghost" href="https://www.youtube.com/watch?v=lEhHxw9Zie8" target="_blank" rel="noopener">動画を見る</a>
           </article>
           <article class="video-card">
-            <div class="pill-outline">機械学習・2 本</div>
-            <h3>Deep Learning（深層学習）入門</h3>
-            <p>深層学習の基礎と、学習の流れをコンパクトに。</p>
-            <a class="btn ghost" href="https://www.youtube.com/watch?v=Z3SsHQbcIZY" target="_blank" rel="noopener">動画を見る</a>
+            <div class="pill-outline">機械学習・3 本</div>
+            <h3>scikit-learn入門</h3>
+            <p>データの分け方から学習・予測・検証まで、機械学習の流れを 30 分で。</p>
+            <a class="btn ghost" href="https://www.youtube.com/watch?v=saJQsqIDOxI" target="_blank" rel="noopener">動画を見る</a>
+          </article>
+          <article class="video-card">
+            <div class="pill-outline">AI の仕組み・1 本</div>
+            <h3>ChatGPTってどうやって動いているの～Transformerの基礎</h3>
+            <p>ChatGPT はどう動くのか。Transformer の基礎を 5 分で。</p>
+            <a class="btn ghost" href="https://www.youtube.com/watch?v=_EGtxIIIu-Y" target="_blank" rel="noopener">動画を見る</a>
           </article>
           <article class="video-card">
             <div class="pill-outline">AI 活用・1 本</div>
@@ -294,12 +311,12 @@
           <article class="card">
             <div class="card-icon">1</div>
             <h3>Python基礎</h3>
-            <p>Python 入門で文法と考え方をつかみ、pandas 入門・matplotlib 入門でデータの集計とグラフへ。</p>
+            <p>Python 入門で文法と考え方をつかみ、numpy 入門・pandas 入門・matplotlib 入門で、数値の計算・データの集計・グラフへ。</p>
           </article>
           <article class="card">
             <div class="card-icon">2</div>
             <h3>機械学習</h3>
-            <p>scikit-learn で機械学習の基本を体験し、Deep Learning 入門で学習の流れを理解。</p>
+            <p>scikit-learn 入門で機械学習の流れを体験し、Deep Learning 入門で深層学習の基礎へ。</p>
           </article>
           <article class="card">
             <div class="card-icon">3</div>
@@ -313,9 +330,29 @@
         <div class="section-header">
           <p class="eyebrow">All Videos</p>
           <h2>公開中の動画一覧</h2>
-          <p class="lede">公開中の全 17 本を、新しい順に並べています。</p>
+          <p class="lede">公開中の動画 19 本を、新しい順に並べています（ショート動画を除く）。</p>
         </div>
         <div class="thumb-grid">
+          <a class="thumb-card" href="https://www.youtube.com/watch?v=QzrIljSJFY4" target="_blank" rel="noopener">
+            <div class="thumb">
+              <img src="https://i.ytimg.com/vi/QzrIljSJFY4/hqdefault.jpg" alt="numpy入門" loading="lazy">
+            </div>
+            <div class="thumb-meta">
+              <h3>numpy入門</h3>
+              <p>配列の作り方から集計・形の変え方・行列積まで、NumPy の基本を 30 分で。</p>
+              <p class="thumb-date"><b>NumPy</b>　2026年11月20日・31 分</p>
+            </div>
+          </a>
+          <a class="thumb-card" href="https://www.youtube.com/watch?v=saJQsqIDOxI" target="_blank" rel="noopener">
+            <div class="thumb">
+              <img src="https://i.ytimg.com/vi/saJQsqIDOxI/hqdefault.jpg" alt="scikit-learn入門" loading="lazy">
+            </div>
+            <div class="thumb-meta">
+              <h3>scikit-learn入門</h3>
+              <p>データの分け方から学習・予測・検証まで、機械学習の流れを 30 分で。</p>
+              <p class="thumb-date"><b>機械学習</b>　2026年11月19日・30 分</p>
+            </div>
+          </a>
           <a class="thumb-card" href="https://www.youtube.com/watch?v=lEhHxw9Zie8" target="_blank" rel="noopener">
             <div class="thumb">
               <img src="https://i.ytimg.com/vi/lEhHxw9Zie8/hqdefault.jpg" alt="matplotlib入門" loading="lazy">
